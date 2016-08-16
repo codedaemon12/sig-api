@@ -1,7 +1,11 @@
+var path    = require("path");
 var appRouter = function(app) {
     app.get("/", function(req, res) {
       res.send("Hello World");
   });
+  app.get("/doc", function(req, res) {
+    res.sendFile(path.join(__dirname+'/docupload-handler.html'));
+});
   app.get("/account", function(req, res) {
       var accountMock = {
           "username": "nraboy",
