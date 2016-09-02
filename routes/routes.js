@@ -1,4 +1,6 @@
 var path    = require("path");
+var request = require('request');
+
 var appRouter = function(app) {
     app.get("/", function(req, res) {
       res.send("Hello World");
@@ -30,10 +32,12 @@ var appRouter = function(app) {
       }
 });
   app.post("/verify", function(req, res) {
-      console.log(req.body.SAMLResponse);
-      return res.send({
-        "message" :"nice job"
-      });
+      //console.log(req.body.SAMLResponse);
+      var SAMLResponse = req.body.SAMLResponse;
+      res.send(path.join(__dirname+'/docupload-handler.html?SAMLResponse='+SAMLResponse));
+      // return res.send({
+      //   "message" :"nice job"
+      // });
       // if(!req.body.username || !req.body.password) {
       //     return res.send({"status": "error", "message": "missing a parameter"});
       // } else {
